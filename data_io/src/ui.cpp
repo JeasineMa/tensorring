@@ -67,17 +67,17 @@ void MainWindow::handleButton()
 
 void MainWindow::process(double ** data ,int size)
 {
-    fout.open("normalize_data.txt");
+        fout.open("normalize_data.txt");
         int begin[6];
         double min[6],max[6],gap[6];
         for(int i=0;i<6;i++)
         {
-                cout<<i<<endl;
+//                 cout<<i<<endl;
                 int j;
                 for(j=0;j<30;j++){
                         if(j==0){
                                 max[i]=min[i]=data[i][j];
-                                cout<<max[i]<<endl<<min[i]<<endl;
+//                                 cout<<max[i]<<endl<<min[i]<<endl;
                         }
                         else{
                                 if(max[i]<data[i][j])
@@ -88,7 +88,7 @@ void MainWindow::process(double ** data ,int size)
                 }
                 gap[i]=max[i]-min[i];
         }
-        cout<<"r0"<<endl;
+       
         for(int i=0;i<6;i++){
                 for(int j=0;j<30;j++){
                         if(j==0){
@@ -106,7 +106,7 @@ void MainWindow::process(double ** data ,int size)
                         }
                 }
         }
-        cout<<"r1"<<endl;
+        
         int bb=0;
         for(;bb<size;bb++){
                 int count=0;
@@ -188,7 +188,7 @@ void MainWindow::read_data()
     {   
         if(data_number > 0)
         {
-               cout << "start writing data" << endl;
+//                cout << "start writing data" << endl;
 //                 int array_size = 30;
 //                 int index_increment = data_number / array_size;
             double  ** new_dataset = new double*[6];
