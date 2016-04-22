@@ -22,6 +22,7 @@ private:
     double data_buff[6][100];
     int data_number;
     bool button_clicked;
+
 };
  
 #endif // MAINWINDOW_H

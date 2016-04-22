@@ -183,8 +183,8 @@ int SerialHandler::ConfigPort ( int fd )
   struct termios opt;
   tcgetattr ( fd,&opt );
   tcflush ( fd,TCIOFLUSH );
-  cfsetispeed ( &opt,B921600 );
-  cfsetospeed ( &opt,B021600 );
+  cfsetispeed ( &opt,B115200 );
+  cfsetospeed ( &opt,B115200 );
   opt.c_cflag &= ~CSIZE;
   opt.c_cflag |= CS8; //8位数据位
   opt.c_cflag &= ~PARENB;//无校验位
