@@ -1,0 +1,2 @@
+/home/saodiseng/projects/jy901_serial/build/CMakeFiles/jy901_serial.dir
+/home/saodiseng/projects/jy901_serial/build/CMakeFiles/jy901_serial_automoc.dir
