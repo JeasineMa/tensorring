@@ -25,8 +25,7 @@ void SerialHandler::init()
       // printf("portsign: %d\n", portsign);
       if ( -1 ==portsign )
         {
-          cout<<"Open Port Fail"<<endl;
-
+//           cout<<"Open Port Fail"<<endl;
         }
       else
         {
@@ -41,7 +40,7 @@ void SerialHandler::init()
       cnt = read ( portsign,buff,1000 );
       for ( int i=0; i<cnt; i++ )
         cout<< ( int ) buff[i]<<" ";
-      cout<<"init read"<<endl;
+//       cout<<"init read"<<endl;
     }
 }
 
@@ -50,7 +49,7 @@ void SerialHandler::Read()
 //    printf("queue size: %4d, ",fifo.size());
   if ( Write_Priority!=0 )
     {
-      printf ( "writing now.\n" );
+//       printf ( "writing now.\n" );
       return;
     }
 //   if ( FD_ISSET ( portsign,&wd ) )
@@ -86,7 +85,7 @@ void SerialHandler::Read()
       readByte=read ( portsign,buff,package_size );
       if ( readByte<=0 )
         {
-          printf ( "no data.\n" );
+//           printf ( "no data.\n" );
           return;
         }
       // readbuff[readByte]=0;
@@ -95,10 +94,10 @@ void SerialHandler::Read()
         {
           fifo.push ( buff[i] );
         }
-        std::cout <<"pkg size:" << fifo.size() << std::endl;
+//         std::cout <<"pkg size:" << fifo.size() << std::endl;
       if ( fifo.size() > package_size )
         {
-          cout<<fifo.size() <<" queue size is greater than pkg size, check loop rate"<<endl;
+//           cout<<fifo.size() <<" queue size is greater than pkg size, check loop rate"<<endl;
         }
 
       // put data into readbuff
@@ -107,7 +106,7 @@ void SerialHandler::Read()
           isReadOK = 0;
           //needclean = true;
           int ti= package_size;
-          printf ( "%d < %d bytes in FIFO.\n",fifo.size(),ti );
+//           printf ( "%d < %d bytes in FIFO.\n",fifo.size(),ti );
         }
       else
         {
@@ -160,7 +159,7 @@ void SerialHandler::Read()
                     }
                   break;
                 default:
-                  cerr<<"impossible!"<<endl;
+//                   cerr<<"impossible!"<<endl;
                   break;
                 }
               if ( outflag )
@@ -183,8 +182,8 @@ int SerialHandler::ConfigPort ( int fd )
   struct termios opt;
   tcgetattr ( fd,&opt );
   tcflush ( fd,TCIOFLUSH );
-  cfsetispeed ( &opt,B921600 );
-  cfsetospeed ( &opt,B021600 );
+  cfsetispeed ( &opt,B115200 );
+  cfsetospeed ( &opt,B115200 );
   opt.c_cflag &= ~CSIZE;
   opt.c_cflag |= CS8; //8位数据位
   opt.c_cflag &= ~PARENB;//无校验位
@@ -212,7 +211,7 @@ int SerialHandler::ConfigPort ( int fd )
   status = tcsetattr ( fd,TCSANOW,&opt );
   if ( status !=0 )
     {
-      perror ( "tcsetattr fd error!" );
+//       perror ( "tcsetattr fd error!" );
       return -1;
     }
   tcflush ( fd ,TCIOFLUSH );

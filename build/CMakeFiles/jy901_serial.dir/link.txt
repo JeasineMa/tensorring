@@ -1,1 +1,0 @@
-/usr/bin/c++      CMakeFiles/jy901_serial.dir/src/main.cpp.o CMakeFiles/jy901_serial.dir/src/Serial.cpp.o CMakeFiles/jy901_serial.dir/src/ui.cpp.o CMakeFiles/jy901_serial.dir/include/moc_ui.cxx.o CMakeFiles/jy901_serial.dir/jy901_serial_automoc.cpp.o  -o jy901_serial -rdynamic /usr/lib/x86_64-linux-gnu/libQtGui.so /usr/lib/x86_64-linux-gnu/libQtCore.so 
