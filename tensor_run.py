@@ -18,8 +18,10 @@ def qtdata(input):
 # Import Data 
 def datainput():
     myfile=open("data_out3",'r')
+    file2=open("ABCDE-433",'r')
     label=[]
     data=[]
+    testing=[]
     for i in range(0,200):
         line=myfile.readline()
         label.append(int(line))
@@ -31,11 +33,19 @@ def datainput():
 
             for num in result:
                 data.append(num)
-    return label,data
+
+    for j in range(0,6):
+        result=[]
+        line=file2.readline()
+        temp=map(float,line.split(' ')[0:433])
+        result.append(temp)
+
+        for num in result:
+            testing.append(num)
+    return label,data,testing
 
 
-label,data=datainput()
-
+label,data,testing=datainput()
 
 import tensorflow as tf
 from tensorflow.models.rnn import rnn, rnn_cell
@@ -144,7 +154,7 @@ with tf.Session() as sess:
         acc = sess.run(accuracy, feed_dict={x: batch_xs, y: batch_ys,
                                                 istate: np.zeros((batch_size, 2*n_hidden))})
             # Calculate batch loss
-        print "Iter " + str(step*batch_size*5) + ", Minibatch Loss= " + "{:.6f}".format(loss) + \
+        print "Iter " + str(step*batch_size) + ", Minibatch Loss= " + "{:.6f}".format(loss) + \
                   ", Training Accuracy= " + "{:.5f}".format(acc)
         print "Optimization Finished!"
 
@@ -152,31 +162,47 @@ with tf.Session() as sess:
     test_len = 1
     test_data = []
     test_label=[]
-    for i in range(169,170):
-        temp=data[i*12:(i)*12+6]
-        temp=map(list,zip(*temp))
+    
+    import sys
+    import os
+    data = []
+    dic=['A','B','C','D','E'];
+    
+        #wait for signal from MEMS at pipeline
+        #while(1):
+        #    if sys.stdin.readline() == 'ok':
+        #        break;
+    try:
+        file_data = open('./mems_data')
+        for i in range(0,6):
+            tmp = file_data.readline()
+            tmp = tmp.split(' ')
+            tmp = tmp[0:25]
+            for i in range(len(tmp)):
+                tmp[i] = float(tmp[i])
+            data.append(tmp)
+        
+        temp = data
+        temp = map(list,zip(*temp))
         test_data.append(temp)
-        tempp=[]
+        print len(test_data[0])
+        tempp = []
         for m in range(1,6):
             if m==label[i]:
                 tempp.append(1)
             else:
                 tempp.append(0)
         test_label.append(tempp)
+
+        begin=time.clock()
+        res = sess.run(tf.argmax(pred,1), feed_dict={x: test_data, y: test_label,
+                                                                 istate: np.zeros((test_len, 2*n_hidden))})
+        end=time.clock()
+        print "Testing prediction:", res
+        print "which means:",dic[res[0]]
+
+        print 'Time cost:', (end-begin)/10 
+    except IOError:
+        pass
+        
     
-    dic=['A','B','C','D','E'];
-
-    begin=time.clock()   
-    print test_data
-
-    res=sess.run(tf.argmax(pred,1), feed_dict={x: test_data, y: test_label,
-                                                             istate: np.zeros((test_len, 2*n_hidden))})
-
-    end=time.clock()
-    
-    print 'begin...'
-    print 'end'
-    print "Testing prediction:", res
-    print "which means:",dic[res[0]]
-
-    print 'time cost:',end-begin
