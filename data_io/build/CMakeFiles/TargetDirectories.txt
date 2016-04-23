@@ -1,0 +1,8 @@
+/Users/jeasinema/Documents/Skyworks/GitHub/tenserflow_ring/data_io/build/CMakeFiles/edit_cache.dir
+/Users/jeasinema/Documents/Skyworks/GitHub/tenserflow_ring/data_io/build/CMakeFiles/rebuild_cache.dir
+/Users/jeasinema/Documents/Skyworks/GitHub/tenserflow_ring/data_io/build/CMakeFiles/list_install_components.dir
+/Users/jeasinema/Documents/Skyworks/GitHub/tenserflow_ring/data_io/build/CMakeFiles/install.dir
+/Users/jeasinema/Documents/Skyworks/GitHub/tenserflow_ring/data_io/build/CMakeFiles/install/strip.dir
+/Users/jeasinema/Documents/Skyworks/GitHub/tenserflow_ring/data_io/build/CMakeFiles/install/local.dir
+/Users/jeasinema/Documents/Skyworks/GitHub/tenserflow_ring/data_io/build/CMakeFiles/jy901_serial.dir
+/Users/jeasinema/Documents/Skyworks/GitHub/tenserflow_ring/data_io/build/CMakeFiles/jy901_serial_automoc.dir

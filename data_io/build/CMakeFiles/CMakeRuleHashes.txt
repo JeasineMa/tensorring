@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+e964339d85dc12856a01ce7fca33f281 CMakeFiles/jy901_serial_automoc
+02a5f0b215b0f70ae91d3b9175faa848 include/moc_ui.cxx
